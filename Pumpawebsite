@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUMPA - The Ultimate Meme Token</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #0a0a0a;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .social-links a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 10px;
+            display: block;
+        }
+        .game-container {
+            margin-top: 50px;
+        }
+        .btn {
+            background-color: #ffcc00;
+            color: #0a0a0a;
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #wallet-address {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Welcome to PUMPA! 🚀</h1>
+        <p>The most exciting meme token in the galaxy!</p>
+        
+        <!-- Visuals Section -->
+        <img src="/mnt/data/A_2D_digital_illustration_for_the_meme_token_\\\"Pump.png" alt="Pumpa Image 1">
+        <img src="/mnt/data/A_vibrant_digital_illustration_in_a_retro,_comic,_.png" alt="Pumpa Image 2">
+        
+        <h2>Join the Community</h2>
+        <div class="social-links">
+            <a href="https://x.com/Pumpa_Cto?t=3IL1m0vSDsCO-jv_0otpuA&s=09" target="_blank">🐦 Follow us on Twitter</a>
+            <a href="https://t.me/pumpa100x" target="_blank">💬 Join our Telegram</a>
+        </div>
+        
+        <!-- Play to Win Game Section -->
+        <h2>🚀 PUMPA - Play to Win! 🚀</h2>
+        <p>Click below and test your luck with **PUMPA**!</p>
+        <div class="game-container">
+            <button class="btn" onclick="playGame()">Play</button>
+            <div class="result" id="result"></div>
+        </div>
+
+        <!-- Phantom Wallet Connection -->
+        <h2>🏦 Add PUMPA Token to Your Phantom Wallet!</h2>
+        <button class="btn" onclick="connectPhantom()">Connect Phantom Wallet</button>
+        <div id="wallet-address"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.39.0/dist/web3.min.js"></script>
+
+    <script>
+        // Phantom Wallet Connection
+        async function connectPhantom() {
+            // Check if Phantom wallet is installed
+            if (window.solana && window.solana.isPhantom) {
+                try {
+                    // Request wallet connection
+                    const response = await window.solana.request({ method: 'connect' });
+                    // Display the wallet address
+                    const walletAddress = response.publicKey.toString();
+                    document.getElementById('wallet-address').textContent = "Connected Wallet Address: " + walletAddress;
+
+                    // Prompt user to add the PUMPA token to their wallet
+                    alert("Don't forget to add PUMPA token to your Phantom wallet!");
+                } catch (error) {
+                    alert('Error connecting wallet: ' + error.message);
+                }
+            } else {
+                alert('Please install Phantom wallet.');
+            }
+        }
+
+        // Play to Win Game Function
+        function playGame() {
+            const random = Math.random(); // Generate a random number
+            const result = document.getElementById("result");
+
+            if (random < 0.5) {
+                result.textContent = "You Win! 🎉";
+                result.style.color = "green";
+            } else {
+                result.textContent = "You Lose! 😢";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
